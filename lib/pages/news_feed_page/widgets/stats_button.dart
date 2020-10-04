@@ -1,67 +1,93 @@
 import 'package:animals_guard/helpers/helpers.dart';
+import 'package:animals_guard/pages/news_feed_page/widgets/map_for_stats.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class StatsButton extends StatelessWidget {
   Map<String, double> dataMap = {
-    "Flutter": 5,
-    "React": 3,
-    "Xamarin": 2,
-    "Ionic": 2,
+    "В рассмотрении": 3,
+    "Отказано": 2,
+    "Одобрено": 2,
   };
+  List<Color> _colors = [
+    Colors.yellow,
+    Colors.red,
+    Colors.green,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            backgroundColor: Theme.of(context).cardColor,
-            contentPadding: EdgeInsets.all(0),
-            titlePadding: EdgeInsets.all(0),
-            content: Container(
-              width: 1,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: Helpers.responsiveHeight(5, context),
-                      bottom: Helpers.responsiveHeight(28, context),
-                    ),
-                    child: Text(
-                      'Всплывающее окно с диаграммой, которую проще всего реализовать',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            fontSize: Helpers.responsiveHeight(18, context),
-                          ),
-                    ),
-                  ),
-                  PieChart(
-                    dataMap: dataMap,
-                    animationDuration: Duration(milliseconds: 800),
-                    chartLegendSpacing: 32,
-                    chartRadius: MediaQuery.of(context).size.width / 3.2,
-                    initialAngleInDegree: 0,
-                    chartType: ChartType.disc,
-                    ringStrokeWidth: 32,
-                    legendOptions: LegendOptions(
-                      showLegends: false,
-                    ),
-                    chartValuesOptions: ChartValuesOptions(
-                      showChartValueBackground: false,
-                      showChartValues: false,
-                      showChartValuesInPercentage: false,
-                      showChartValuesOutside: false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        // showDialog(
+        //   context: context,
+        //   builder: (_) => AlertDialog(
+        //     backgroundColor: Theme.of(context).cardColor,
+        //     contentPadding: EdgeInsets.all(10),
+        //     titlePadding: EdgeInsets.all(0),
+        //     content: Container(
+        //       width: 1,
+        //       child: Column(
+        //         mainAxisSize: MainAxisSize.min,
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           Container(
+        //             margin: EdgeInsets.only(
+        //               top: Helpers.responsiveHeight(10, context),
+        //               bottom: Helpers.responsiveHeight(10, context),
+        //             ),
+        //             child: Text(
+        //               'Ваш регион: Ростовская область',
+        //               textAlign: TextAlign.center,
+        //               style: Theme.of(context).textTheme.bodyText1.copyWith(
+        //                     fontSize: Helpers.responsiveHeight(18, context),
+        //                     fontWeight: FontWeight.bold,
+        //                   ),
+        //             ),
+        //           ),
+        //           Container(
+        //             margin: EdgeInsets.only(
+        //               top: Helpers.responsiveHeight(15, context),
+        //               bottom: Helpers.responsiveHeight(10, context),
+        //             ),
+        //             child: Text(
+        //               'Статистика по поданным заявлениям',
+        //               textAlign: TextAlign.center,
+        //               style: Theme.of(context).textTheme.bodyText1.copyWith(
+        //                     fontSize: Helpers.responsiveHeight(18, context),
+        //                   ),
+        //             ),
+        //           ),
+        //           PieChart(
+        //             dataMap: dataMap,
+        //             animationDuration: Duration(milliseconds: 800),
+        //             chartLegendSpacing: 32,
+        //             chartRadius: MediaQuery.of(context).size.width / 3.2,
+        //             initialAngleInDegree: 0,
+        //             chartType: ChartType.disc,
+        //             ringStrokeWidth: 32,
+        //             legendOptions: LegendOptions(
+        //               showLegendsInRow: true,
+        //               legendPosition: LegendPosition.bottom,
+        //               showLegends: true,
+        //               legendShape: BoxShape.circle,
+        //               legendTextStyle: TextStyle(
+        //                 fontWeight: FontWeight.bold,
+        //               ),
+        //             ),
+        //             chartValuesOptions: ChartValuesOptions(
+        //               showChartValueBackground: false,
+        //               showChartValues: false,
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // );
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MapForStats()));
       },
       child: Container(
         alignment: Alignment.center,

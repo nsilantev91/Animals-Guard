@@ -9,8 +9,7 @@ class StepTwoDescription extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: Helpers.responsiveWidth(24, context)
-          ),
+              horizontal: Helpers.responsiveWidth(24, context)),
           child: Text(
             "Опишите произошедшее",
             textAlign: TextAlign.center,
@@ -24,7 +23,10 @@ class StepTwoDescription extends StatelessWidget {
         SizedBox(
           height: Helpers.responsiveHeight(100, context),
         ),
-        ReportTextField("Что случилось?"),
+        ReportTextField(
+          "Что случилось?",
+          'Ввeдеите сообщение...',
+        ),
       ],
     );
   }

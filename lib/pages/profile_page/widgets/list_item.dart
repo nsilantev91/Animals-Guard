@@ -1,42 +1,42 @@
+import 'package:animals_guard/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
   final String type;
   final String value;
-  final double height;
-  final double width;
 
-  ListItem(this.type, this.value, this.height, this.width);
-
-  double _adaptationHeight(double myHeight) {
-    return height * (myHeight / 740);
-  }
-
-  double _adaptationWidth(double myWidth) {
-    return width * (myWidth / 360);
-  }
+  ListItem(this.type, this.value);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            width: 0.5,
-            color: Color(HexColor.getColorFromHex("#E5E5E5")),
-          )),
-      height: _adaptationHeight(60),
-      padding: EdgeInsets.symmetric(horizontal: _adaptationWidth(20)),
+        color: Colors.white,
+        border: Border.all(
+          width: 0.5,
+          color: Color(HexColor.getColorFromHex("#E5E5E5")),
+        ),
+      ),
+      height: Helpers.responsiveHeight(60, context),
+      padding: EdgeInsets.symmetric(
+        horizontal: Helpers.responsiveWidth(20, context),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             type,
-            style: Theme.of(context).textTheme.body1,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1.color,
+              fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily
+            ),
           ),
           Text(
             value,
-            style: Theme.of(context).textTheme.body1,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyText1.color,
+              fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily
+            ),
           ),
         ],
       ),

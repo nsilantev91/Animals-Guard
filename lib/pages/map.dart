@@ -1,3 +1,5 @@
+import 'package:animals_guard/alerts/check_geo_alert.dart';
+import 'package:animals_guard/repos/user_repository.dart';
 import 'package:animals_guard/services/geo_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -22,14 +24,7 @@ class _GMapState extends State<GMap> {
   _GMapState({this.del});
   String addres;
   Marker deliever;
-  Set<Marker> _markers = new Set<Marker>()
-    ..add(
-      Marker(
-          markerId: MarkerId("Market"),
-          position: LatLng(0.0, 0.0),
-          infoWindow: InfoWindow(title: "Еда как есть"),
-          icon: BitmapDescriptor.defaultMarker),
-    );
+  Set<Marker> _markers = new Set<Marker>();
   @override
   void initState() {
     deliever = new Marker(
@@ -72,11 +67,15 @@ class _GMapState extends State<GMap> {
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton(
+                backgroundColor: Theme.of(context).buttonColor,
                 child: Icon(Icons.check),
                 onPressed: () async {
                   del = await Geo.getAddressFromLatLng(deliever.position);
                   print(del.caption);
+                  UserRepos.address = del;
                   Navigator.pop(context, del);
+                  Navigator.of(context).pop();
+                  await checkGeoDialog(context, del);
                 }),
           ),
         ],

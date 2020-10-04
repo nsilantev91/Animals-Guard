@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "789322336037",
+    "firebase_url": "https://animals-guard.firebaseio.com",
+    "project_id": "animals-guard",
+    "storage_bucket": "animals-guard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789322336037:android:4f01af6e5c4142fd163ccc",
+        "android_client_info": {
+          "package_name": "com.mobyteDev.animals_guard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789322336037-pj6em1rjhn8id2eoe88akcrtofvlfrhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdGMk-HmmGoBs5dXvPjRCBO5IGbJHuM8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789322336037-pj6em1rjhn8id2eoe88akcrtofvlfrhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

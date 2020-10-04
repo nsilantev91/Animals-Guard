@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class DogSliderBgPainter extends CustomPainter {
@@ -23,7 +22,7 @@ class DogSliderBgPainter extends CustomPainter {
     var paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
-      ..color = Color(0xff357171);
+      ..color = Color(0xFF98D2F5);
 
     var radius = Radius.elliptical(arcRadius, arcHeight);
     bool arcClockwise = arcHeight.sign < 0;
@@ -32,14 +31,16 @@ class DogSliderBgPainter extends CustomPainter {
     var path = Path();
     path.moveTo(0, lineY);
     path.lineTo(xPos - arcRadius, lineY);
-    path.arcToPoint(Offset(xPos, lineY + arcHeight), radius: radius, clockwise: arcClockwise);
+    path.arcToPoint(Offset(xPos, lineY + arcHeight),
+        radius: radius, clockwise: arcClockwise);
     canvas.drawPath(path, paint);
 
     //Paint grey portion of line
     paint.color = Color(0xffd1d0da);
     path = Path();
     path.moveTo(xPos, lineY + arcHeight);
-    path.arcToPoint(Offset(xPos + arcRadius, lineY), radius: radius, clockwise: arcClockwise);
+    path.arcToPoint(Offset(xPos + arcRadius, lineY),
+        radius: radius, clockwise: arcClockwise);
     path.lineTo(size.width, lineY);
     canvas.drawPath(path, paint);
   }

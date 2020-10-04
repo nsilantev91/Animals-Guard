@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:pdf/widgets.dart' as p;
+import 'package:pdf/pdf.dart';
 import 'global.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Helpers {
   static double responsiveHeight(double size, BuildContext context) {
@@ -69,5 +71,23 @@ class Helpers {
               );
       },
     );
+  }
+
+  static Future<File> writePdf(String text) async {
+    final doc = p.Document();
+
+    doc.addPage(
+      p.Page(
+        build: (p.Context context) => p.Center(
+          child: p.Text('Hello World!'),
+        ),
+      ),
+    );
+    final output = await getApplicationDocumentsDirectory();
+    print(output.path);
+   //String filename = "storage/emulated/0/com.mobyteDev.animals_guard/заявление.pdf";
+    final file = File('${output.path}/заявление.pdf');
+    file.writeAsBytesSync(doc.save());
+    return file;
   }
 }

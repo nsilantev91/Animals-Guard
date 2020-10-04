@@ -15,13 +15,13 @@ class BackArrow extends StatelessWidget {
       },
       child: Platform.isAndroid ? Icon(
         Icons.arrow_back,
-        color: Theme.of(context).accentColor,
+        color: Colors.black,
         size: 28,
       )
       :
       Icon( 
         CupertinoIcons.left_chevron,
-        color: Theme.of(context).accentColor,
+        color: Colors.black,
         size: 28,
       )
     );

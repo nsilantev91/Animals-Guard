@@ -2,67 +2,98 @@ import 'package:animals_guard/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
 class Achievements extends StatelessWidget {
+  double progress = 0;
+  int reportCount = 2;
+  int repostCount = 5;
+
+  Widget getUserTitleAchievement(BuildContext context){
+    String title;
+    if (progress < 0.30){
+      title = "Спасибо, что вы с нами!";
+    }
+    else if (progress < 0.65){
+      title = "Вы активный участник!";
+    }
+    else {
+      title = "Вы настоящий друг и защитник животных!";
+    }
+    return Text(
+      title,
+      style: TextStyle(
+        fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+        color: Theme.of(context).textTheme.bodyText1.color,
+        fontSize: Helpers.responsiveHeight(14, context),
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      overflow: Overflow.visible,
+    progress = reportCount * 0.21 + repostCount * 0.07;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: Helpers.responsiveWidth(300, context),
-          height: Helpers.responsiveHeight(100, context),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: const Color(0xffffffff),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0x29000000),
-                offset: Offset(0, 3),
-                blurRadius: 6,
-              ),
-            ],
+        Text(
+          'Ваш вклад в защиту животных: ',
+          style: TextStyle(
+            fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+            fontSize: Helpers.responsiveHeight(16, context),
+            color: Theme.of(context).textTheme.bodyText1.color,
           ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: Helpers.responsiveHeight(24, context),
         ),
         Container(
-          width: Helpers.responsiveWidth(300, context),
-          height: Helpers.responsiveHeight(100, context),
+          alignment: Alignment.centerLeft,
+          width: Helpers.responsiveWidth(312, context),
+          height: Helpers.responsiveHeight(30, context),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: const Color(0xffffffff),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0x29000000),
-                offset: Offset(0, 3),
-                blurRadius: 6,
-              ),
-            ],
+            borderRadius: BorderRadius.circular(20),
           ),
-        ),
-        Positioned(
-          top: -Helpers.responsiveHeight(6, context),
-          left: Helpers.responsiveWidth(15, context),
-          child: Container(
-            width: Helpers.responsiveWidth(90, context),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0x29000000),
-                  offset: Offset(0, 3),
-                  blurRadius: 6,
+          child: FractionallySizedBox(
+            widthFactor: progress < 1 ? progress : 1.0,
+            child: Container(
+              alignment: Alignment.center,
+              width: Helpers.responsiveWidth(312, context),
+              height: Helpers.responsiveHeight(30, context),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).buttonColor,
+                    Color(0xFFC5E2FF),
+                  ],
                 ),
-              ],
-            ),
-            child: Text(
-              'Достижения',
-              style: TextStyle(
-                fontFamily: 'Arial',
-                fontSize: 11,
-                color: const Color(0xff000000),
-                fontWeight: FontWeight.w700,
               ),
-              textAlign: TextAlign.center,
             ),
+          ),
+        ),
+        SizedBox(
+          height: Helpers.responsiveHeight(12, context),
+        ),
+        getUserTitleAchievement(context),
+        SizedBox(
+          height: Helpers.responsiveHeight(24, context),
+        ),
+        Text(
+          "Подано заявлений: " + reportCount.toString(),
+          style: TextStyle(
+            fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+            fontSize: Helpers.responsiveHeight(13, context),
+            color: Theme.of(context).textTheme.bodyText1.color,
+          ),
+        ),
+        SizedBox(
+          height: Helpers.responsiveHeight(5, context),
+        ),
+        Text(
+          "Сделано репостов: " + repostCount.toString(),
+          style: TextStyle(
+            fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+            fontSize: Helpers.responsiveHeight(13, context),
+            color: Theme.of(context).textTheme.bodyText1.color,
           ),
         ),
       ],

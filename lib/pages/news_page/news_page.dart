@@ -2,6 +2,7 @@ import 'package:animals_guard/helpers/helpers.dart';
 import 'package:animals_guard/models/news_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class NewsPage extends StatelessWidget {
   final NewsData data;
@@ -45,32 +46,61 @@ class NewsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  padding: EdgeInsets.only(
-                    left: Helpers.responsiveWidth(6, context),
-                  ),
-                  margin: EdgeInsets.only(
-                    top: Helpers.responsiveHeight(30, context),
-                  ),
-                  height: Helpers.responsiveHeight(40, context),
-                  width: Helpers.responsiveHeight(40, context),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 0.5,
-                      color: Color(0xFFD3DADD),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: Helpers.responsiveWidth(8, context),
+                      ),
+                      margin: EdgeInsets.only(
+                        top: Helpers.responsiveHeight(30, context),
+                      ),
+                      height: Helpers.responsiveHeight(40, context),
+                      width: Helpers.responsiveHeight(40, context),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 0.5,
+                          color: Color(0xFFD3DADD),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: Helpers.responsiveHeight(18, context),
+                      ),
                     ),
                   ),
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: Helpers.responsiveHeight(16, context),
+                  GestureDetector(
+                    onTap: () async {
+                      await FlutterShare.share(title: 'Поделиться ссылкой на новость',linkUrl:'https://mobyte.dev');
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        top: Helpers.responsiveHeight(30, context),
+                      ),
+                      height: Helpers.responsiveHeight(40, context),
+                      width: Helpers.responsiveHeight(40, context),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 0.5,
+                          color: Color(0xFFD3DADD),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.share,
+                        size: Helpers.responsiveHeight(18, context),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               SizedBox(
                 height: Helpers.responsiveHeight(24, context),

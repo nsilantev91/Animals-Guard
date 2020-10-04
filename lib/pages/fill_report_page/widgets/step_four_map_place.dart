@@ -1,6 +1,8 @@
 import 'package:animals_guard/helpers/helpers.dart';
-import 'package:animals_guard/pages/fill_report_page/widgets/report_text_field.dart';
+import 'package:animals_guard/pages/fill_report_page/widgets/report_text_field_map.dart';
 import 'package:flutter/material.dart';
+
+import 'report_text_field.dart';
 
 class StepFourMapPlace extends StatelessWidget {
   @override
@@ -9,8 +11,7 @@ class StepFourMapPlace extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: Helpers.responsiveWidth(24, context)
-          ),
+              horizontal: Helpers.responsiveWidth(24, context)),
           child: Text(
             "Укажите адрес произошедшего",
             textAlign: TextAlign.center,
@@ -24,8 +25,12 @@ class StepFourMapPlace extends StatelessWidget {
         SizedBox(
           height: Helpers.responsiveHeight(100, context),
         ),
-        ReportTextField("Адрес:"),
+        ReportTextFieldMap("Адрес:"),
       ],
     );
   }
 }
+
+
+
+

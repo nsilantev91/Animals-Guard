@@ -23,7 +23,7 @@ class NavbarButton extends StatelessWidget {
             ),
             child: Icon(
               data.icon,
-              color: isSelected ? Colors.black : Theme.of(context).cardColor,
+              color: isSelected ? Colors.black : Color(0xFFC5E2FF),
               size: Helpers.responsiveHeight(28, context),
             ),
           ),

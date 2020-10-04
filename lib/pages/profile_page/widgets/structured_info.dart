@@ -1,37 +1,44 @@
+import 'dart:io';
+
+import 'package:animals_guard/helpers/helpers.dart';
+import 'package:animals_guard/pages/fill_in_the_profile_page/fill_in_the_profile_page.dart';
+import 'package:animals_guard/repos/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import './list_item.dart';
 
 class StructuredInfo extends StatelessWidget {
-  final double height;
-  final double width;
-
-  StructuredInfo(this.height, this.width);
-
-  double _adaptationHeight(double myHeight) {
-    return height * (myHeight / 740);
-  }
-
-  double _adaptationWidth(double myWidth) {
-    return width * (myWidth / 360);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final repos = UserRepos.getInstance();
+    // ignore: close_sinks
+    //final userData = MyApp.userBloc;
+    // ignore: close_sinks
+    //final auth = MyApp.authBloc;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(left: _adaptationWidth(20)),
+          padding: EdgeInsets.only(left: Helpers.responsiveWidth(5, context)),
           child: Align(
             alignment: Alignment.topLeft,
             child: ListTile(
               title: Text(
                 "Основные данные",
-                style: Theme.of(context).textTheme.subhead,
+                style: TextStyle(
+                  fontFamily: Theme.of(context).textTheme.bodyText1.fontFamily,
+                  
+                  color: Theme.of(context).textTheme.bodyText1.color,
+                ),
               ),
               trailing: GestureDetector(
                 onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => FillInTheProfilePage(),
+                    ),
+                  );
                 },
                 child: Icon(Icons.edit),
               ),
@@ -39,44 +46,39 @@ class StructuredInfo extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: _adaptationHeight(12),
+          height: Helpers.responsiveHeight(12, context),
         ),
         ListItem(
           "Фамилия",
-          '',
-          height,
-          width,
+          repos.surname,
         ),
         ListItem(
           "Имя",
-          '',
-          height,
-          width,
+          repos.name,
         ),
         ListItem(
-            "Пол",
-            '',
-            height,
-            width),
+          "Отчество",
+          repos.secondName,
+        ),
         ListItem(
           "Телефон",
-              '',
-          height,
-          width,
+          repos.phoneNumber,
         ),
         ListItem(
           "E-mail",
-          '',
-          height,
-          width,
+          repos.email,
+          // MyApp.user.email,
         ),
-        ListItem(
-            "Дата рождения",
-            '',
-            height,
-            width),
+        // ListItem(
+        //     "Дата рождения",
+        //     '',
+        //     // MyApp.user.birthday == null
+        //     //     ? ''
+        //     //     : formatDate(MyApp.user.birthday, [dd, '/', mm, '/', yyyy]),
+        //     height,
+        //     width),
         SizedBox(
-          height: _adaptationHeight(20),
+          height: Helpers.responsiveHeight(10, context),
         ),
       ],
     );

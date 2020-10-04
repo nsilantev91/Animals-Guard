@@ -1,10 +1,10 @@
-
-
+import 'package:animals_guard/bloc/user_bloc/user_bloc.dart';
 import 'package:animals_guard/helpers/helpers.dart';
+import 'package:animals_guard/helpers/no_glow_scroll_behaviour.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
 import 'widgets/achievements.dart';
 import 'widgets/structured_info.dart';
 
@@ -50,46 +50,47 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SmartRefresher(
-        controller: RefreshController(),
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                child: CustomScrollView(
-                  physics: BouncingScrollPhysics(),
-                  slivers: [
-                    Container(
-                      child: SliverList(
-                        delegate: SliverChildListDelegate.fixed(
-                          [
-                            SizedBox(
-                                height: Helpers.responsiveWidth(30, context)),
-                            Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  child: ScrollConfiguration(
+                    behavior: NoGlowScrollBehavior(),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: Helpers.responsiveWidth(30, context),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30.0),
                                 topRight: Radius.circular(30.0),
-                              )),
-                              width: Helpers.responsiveWidth(300, context),
+                              ),
                             ),
-                            Center(child: Achievements()),
-                            SizedBox(
-                                height: Helpers.responsiveWidth(30, context)),
-                            StructuredInfo(MediaQuery.of(context).size.height,
-                                MediaQuery.of(context).size.width),
-                          ],
-                        ),
+                            width: Helpers.responsiveWidth(300, context),
+                          ),
+                          Center(
+                            child: Achievements(),
+                          ),
+                          SizedBox(
+                            height: Helpers.responsiveWidth(30, context),
+                          ),
+                          StructuredInfo(),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

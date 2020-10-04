@@ -57,13 +57,12 @@ class ReportNavbar extends StatelessWidget {
             width: Helpers.responsiveWidth(5, context),
           ),
           IgnorePointer(
-          
             ignoring: false,
             child: GestureDetector(
               onTap: incStep,
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: 200),
-                opacity: currentStep ==0 ? 0.0 : 1.0,
+                opacity: currentStep == 0 ? 0.0 : 1.0,
                 child: Container(
                   alignment: Alignment.center,
                   width: Helpers.responsiveWidth(212, context),
@@ -78,10 +77,11 @@ class ReportNavbar extends StatelessWidget {
                   child: Text(
                     "Далее",
                     style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyText1.color,
-                        fontFamily:
-                            Theme.of(context).textTheme.bodyText1.fontFamily,
-                        fontSize: Helpers.responsiveHeight(18, context)),
+                      color: Theme.of(context).textTheme.bodyText1.color,
+                      fontFamily:
+                          Theme.of(context).textTheme.bodyText1.fontFamily,
+                      fontSize: Helpers.responsiveHeight(18, context),
+                    ),
                   ),
                 ),
               ),

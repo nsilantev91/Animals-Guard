@@ -30,8 +30,11 @@ class Geo {
         await geolocator.placemarkFromCoordinates(pos.latitude, pos.longitude);
 
     Placemark place = p[0];
-
-    return new Point(caption: (await getRussinAddress(place)), position: pos);
+    return new Point(
+        caption: Platform.isAndroid
+            ? " ${place.subAdministrativeArea}, ${place.thoroughfare}, ${place.name}"
+            : " ${place.subAdministrativeArea}, ${place.name}",
+        position: pos);
   }
 
 //возвращает null, если геопозицию получить нельзя
@@ -59,7 +62,9 @@ class Geo {
       Placemark place = placemarks[0];
 
       return new Point(
-          caption: (await getRussinAddress(place)),
+          caption: Platform.isAndroid
+              ? " ${place.subAdministrativeArea}, ${place.thoroughfare}, ${place.name}"
+              : " ${place.subAdministrativeArea}, ${place.name}",
           position:
               new LatLng(place.position.latitude, place.position.longitude));
     } on TimeoutException {
